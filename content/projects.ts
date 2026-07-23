@@ -67,8 +67,8 @@ export const projects: Project[] = [
       value: "19.1",
       unit: "verdicts/min",
     },
-    liveUrl: "TODO: CodeArena live URL",
-    sourceUrl: "TODO: CodeArena repo URL",
+    liveUrl: "https://codearena-ayush.duckdns.org/",
+    sourceUrl: "https://github.com/Ayush-142/CodeArena",
     overview:
       "CodeArena is a full-stack competitive-programming judge and contest platform. It runs a sandboxed judge pipeline with real-time verdict streaming over Socket.io, ICPC-style contests with Redis ZSET leaderboards, and an AI hint system backed by the Gemini API. It's deployed on an Azure VM behind Caddy with DuckDNS.",
     problem:
@@ -121,7 +121,7 @@ export const projects: Project[] = [
     stack: nakalchiStack,
     headlineMetric: { label: "Candidate pruning", value: "~51x" },
     liveUrl: "https://nakalchi-ayush.duckdns.org",
-    sourceUrl: "TODO: Nakalchi repo URL",
+    sourceUrl: "https://github.com/Ayush-142/Nakalchi",
     overview:
       "Nakalchi is a source-code plagiarism detection engine for programming judges, implementing the Stanford winnowing algorithm from the MOSS paper (SIGMOD 2003). It runs as a TypeScript monorepo — core, service, and web — on MongoDB, Redis, and BullMQ, with a Next.js report UI, deployed via Docker Compose alongside CodeArena on the same Azure VM.",
     problem:
