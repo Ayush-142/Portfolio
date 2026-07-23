@@ -11,7 +11,9 @@ export default function NotFound() {
     <div>
       <h1 className="text-3xl">Not found</h1>
       <p className="mt-2">
-        <Link href="/">Back home</Link>
+        <Link href="/" prefetch={false}>
+          Back home
+        </Link>
       </p>
     </div>
   );

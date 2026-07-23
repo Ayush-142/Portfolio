@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio
 
-## Getting Started
+Ayush's personal portfolio. Next.js (App Router) + TypeScript + Tailwind CSS, built as a fully
+static export — no API routes, no server runtime.
 
-First, run the development server:
+All copy and project data lives in `content/profile.ts` and `content/projects.ts`; components
+render from that data rather than hardcoding text.
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+Produces a static site in `out/`. There's no `next start` step — `out/` is plain HTML/CSS/JS and
+can be served by any static file host.
 
-To learn more about Next.js, take a look at the following resources:
+To preview the production build locally before deploying:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npx serve out
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy
 
-## Deploy on Vercel
+### Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Works as-is. Import the repo in Vercel and deploy — no configuration needed.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### GitHub Pages
+
+`.github/workflows/deploy-pages.yml` builds and publishes `out/` to GitHub Pages on every push to
+`main` (or via manual dispatch). It requires Pages to be enabled for the repo with the source set
+to **GitHub Actions** (Settings → Pages → Build and deployment → Source).
+
+**`basePath`:** GitHub Pages project sites are served from a subpath —
+`https://<user>.github.io/<repo>/` — rather than the domain root. `next.config.ts` reads
+`NEXT_PUBLIC_BASE_PATH` at build time and passes it to Next's `basePath` option; the workflow sets
+it to `/<repo-name>` automatically. If you instead serve from a custom domain or a user/org root
+page (`<user>.github.io` with no subpath), delete the `NEXT_PUBLIC_BASE_PATH` env var from the
+workflow so the site builds for the root path.
+
+`public/.nojekyll` is included so GitHub Pages serves the `_next/` directory as-is instead of
+running it through Jekyll (which ignores underscore-prefixed paths by default).
