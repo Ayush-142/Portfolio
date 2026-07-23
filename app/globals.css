@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #edeef0;
+  --surface: #ffffff;
+  --ink: #14181d;
+  --muted: #5a636e;
+  --rule: #d3d7dc;
+  --accept: #1b7a4b;
+  --fail: #a03a2e;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-accept: var(--accept);
+  --color-fail: var(--fail);
+
+  --font-display: var(--font-spectral);
+  --font-body: var(--font-ibm-plex-sans);
+  --font-data: var(--font-ibm-plex-mono);
+}
+
+html {
+  font-size: 15px;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body), sans-serif;
+  line-height: 1.65;
+}
+
+h1,
+h2 {
+  font-family: var(--font-display), serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+.label,
+.data {
+  font-family: var(--font-data), monospace;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+a {
+  color: var(--accept);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 2px;
+  transition: text-decoration-color 120ms ease;
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accept);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a {
+    transition: none;
+  }
+}
