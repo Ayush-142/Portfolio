@@ -6,10 +6,10 @@ import { projects } from "@/content/projects";
 export default function Home() {
   return (
     <div className="lg:pl-40">
-      <Section label="Intro">
+      <div>
         <h1>{profile.name}</h1>
         <p className="mt-2 text-lg text-muted">{profile.tagline}</p>
-      </Section>
+      </div>
 
       <Section label="Projects">
         {projects.map((project) => (
