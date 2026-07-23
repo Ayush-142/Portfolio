@@ -23,7 +23,7 @@ export const profile: Profile = {
     { label: "Résumé", href: `${basePath}/resume.pdf` },
   ],
   about: [
-    "I'm in my final year of a CS degree at BIT Mesra. I build full-stack systems — a competitive-programming judge, a plagiarism detector, a crater-detection model — and then measure them: throughput, latency, memory, accuracy. When something breaks, I trace it back to the actual cause instead of patching around it. The numbers are what I report, not just whether the demo runs.",
+    "I'm in my final year of a CS degree at BIT Mesra. I build full-stack systems — a competitive-programming judge, a plagiarism detector, a crater-detection model — and then measure them: throughput, latency, memory, accuracy. When something breaks, I trace it back to the actual cause instead of patching around it. The numbers are what I report, not just whether the demo runs. Open to SDE roles starting 2027.",
   ],
   footerRepo: "https://github.com/Ayush-142/Portfolio",
 };
