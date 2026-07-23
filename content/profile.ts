@@ -13,15 +13,15 @@ export type Profile = {
 
 export const profile: Profile = {
   name: "Ayush",
-  // TODO: positioning statement — to be drafted and approved in Phase 2
-  tagline: "TODO: one-line positioning statement",
+  tagline: "I build systems, then measure what breaks.",
   links: [
     { label: "GitHub", href: "TODO: GitHub URL" },
     { label: "LinkedIn", href: "TODO: LinkedIn URL" },
     { label: "Email", href: "mailto:TODO@example.com" },
     { label: "Résumé", href: "/resume.pdf" },
   ],
-  // TODO: about copy — to be drafted and approved in Phase 2
-  about: ["TODO: about paragraph, three to four sentences maximum."],
+  about: [
+    "I'm in my final year of a CS degree at BIT Mesra. I build full-stack systems — a competitive-programming judge, a plagiarism detector, a crater-detection model — and then measure them: throughput, latency, memory, accuracy. When something breaks, I trace it back to the actual cause instead of patching around it. The numbers are what I report, not just whether the demo runs.",
+  ],
   footerRepo: "TODO: portfolio repo URL",
 };
