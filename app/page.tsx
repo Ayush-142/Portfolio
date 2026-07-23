@@ -4,6 +4,9 @@ import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
 
 export default function Home() {
+  const experience = projects.filter((project) => project.role);
+  const personalProjects = projects.filter((project) => !project.role);
+
   return (
     <div className="lg:pl-40">
       <div>
@@ -19,8 +22,14 @@ export default function Home() {
         ))}
       </Section>
 
+      <Section label="Experience">
+        {experience.map((project) => (
+          <ProjectCard key={project.slug} project={project} />
+        ))}
+      </Section>
+
       <Section label="Projects">
-        {projects.map((project) => (
+        {personalProjects.map((project) => (
           <ProjectCard key={project.slug} project={project} />
         ))}
       </Section>

@@ -9,6 +9,7 @@ type ProjectCardProps = {
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <article className="mt-8 border-t border-rule pt-6 first:mt-0 first:border-t-0 first:pt-0">
+      {project.role ? <p className="label text-muted">{project.role}</p> : null}
       <h3 className="font-display text-xl font-semibold tracking-tight text-ink">
         <Link href={`/projects/${project.slug}`} prefetch={false}>
           {project.title}

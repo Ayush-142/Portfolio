@@ -18,6 +18,10 @@ export type Project = {
   slug: string;
   title: string;
   description: string;
+  // Set only for work done under a formal role (internship, research
+  // position). Presence of this field is what puts a card under
+  // "Experience" instead of "Projects" on the landing page.
+  role?: string;
   stack: string[];
   headlineMetric: Metric;
   liveUrl: string;
@@ -165,6 +169,7 @@ export const projects: Project[] = [
     title: "Lunar Crater Detection",
     description:
       "A YOLOv11 crater-detection model trained on Chandrayaan-2 orbital imagery, built as a B.Tech research project.",
+    role: "Research Intern, Dept. of CSE, BIT Mesra · May 2026 – Jul 2026",
     stack: lunarStack,
     headlineMetric: { label: "mAP50 (OHRC)", value: "0.683" },
     liveUrl: "https://lunar-crater-detection.streamlit.app/",
