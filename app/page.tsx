@@ -33,6 +33,37 @@ export default function Home() {
           <ProjectCard key={project.slug} project={project} />
         ))}
       </Section>
+
+      <Section label="Competitive Programming">
+        <p>{profile.competitiveProgramming.standing}</p>
+
+        <ul className="data mt-3 divide-y divide-rule">
+          {profile.competitiveProgramming.results.map((result) => (
+            <li key={result.event}>
+              <a
+                href={result.proofUrl}
+                className="flex flex-col gap-0.5 py-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4"
+              >
+                <span className="text-ink">{result.event}</span>
+                <span className="text-muted sm:text-right">{result.result}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <p className="label mt-3 text-muted">
+          {profile.codingProfiles.map((link, i) => (
+            <span key={link.label}>
+              {i > 0 ? " · " : null}
+              <a href={link.href} className="group">
+                <span className="text-muted group-hover:text-accept">
+                  {link.label}
+                </span>
+              </a>
+            </span>
+          ))}
+        </p>
+      </Section>
     </div>
   );
 }

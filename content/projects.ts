@@ -59,6 +59,15 @@ const nakalchiStack = [
 
 const lunarStack = ["YOLOv11", "ResNet101", "PyTorch", "ONNX Runtime", "Streamlit"];
 
+const kavachStack = [
+  "TypeScript",
+  "Fastify",
+  "MongoDB",
+  "Redis",
+  "ONNX Runtime",
+  "Docker",
+];
+
 export const projects: Project[] = [
   {
     slug: "codearena",
@@ -216,6 +225,60 @@ export const projects: Project[] = [
       { label: "Ablation, stock YOLO11n — mAP50 (TMC-2 / OHRC)", value: "0.327 / 0.303" },
       { label: "ONNX FP32 vs PyTorch, CPU", value: "0.73–0.86x speed" },
       { label: "ONNX INT8 dynamic quant vs PyTorch, CPU", value: "15–20x slower, accuracy loss" },
+    ],
+  },
+  {
+    slug: "kavach",
+    title: "Kavach",
+    description:
+      "An OpenAI-compatible proxy that screens prompts for injection attacks before they reach the model.",
+    stack: kavachStack,
+    headlineMetric: {
+      label: "Detection @ 1.54% FPR",
+      value: "30.5",
+      unit: "% recall",
+    },
+    liveUrl: "https://kavach-ayush.duckdns.org",
+    sourceUrl: "https://github.com/Ayush-142/Kavach",
+    overview:
+      "A security gateway that sits between an application and an LLM. It speaks the OpenAI API, so it drops in as a base-URL change, and screens every request through a staged detection cascade before forwarding it upstream. Built end-to-end across nine phases: corpus construction, a byte-faithful proxy, and three stacked detectors, each accepted only against a pre-registered benchmark.",
+    problem:
+      "Applications built on LLMs are exposed to prompt-injection and jailbreak attacks, and most teams have no layer that inspects traffic before it reaches the model. A useful filter has to catch attacks without blocking legitimate users — a false-positive problem as much as a detection one — and it has to add almost no latency to be deployable.",
+    architecture: {
+      prose:
+        "An OpenAI-compatible Fastify proxy forwards requests byte-for-byte while a cascade inspects them. Stage 1 is a heuristic rule set; Stage 2 is a semantic-similarity check against an index of known attacks; a measured-but-not-deployed Stage 3 classifier was evaluated and deliberately left out. Config is cached with a short TTL so the detection path adds no per-request database lookup. The stack is a TypeScript npm workspaces monorepo — core, service, and eval — running on Fastify, MongoDB, Redis, and ONNX Runtime for in-process MiniLM embeddings, shipped via Docker Compose. It's evaluated against a locked benchmark built from deepset/prompt-injections, JailbreakBench, and HackAPrompt as attacks and LMSYS-Chat-1M as benign traffic, with a held-out test split whose hash was locked before any tuning.",
+      stack: kavachStack,
+    },
+    engineering: [
+      {
+        point:
+          "A locked benchmark, built first. 8,285 attacks and 15,499 benign prompts, split with 5% attack prevalence and the test-set hash frozen before any model saw it. Wilson confidence intervals reported on every rate.",
+        metric: { label: "Test set", value: "5,860", unit: "prompts" },
+      },
+      {
+        point:
+          "A detection path that stays under budget. Stage 1 runs at 0.29ms typical p95; the config cache removed the per-request Mongo lookup that had blown the latency bar, taking the proxy's pairwise overhead from 8.3ms to 2.7ms p95, under the 5ms target.",
+        metric: { label: "Proxy overhead", value: "2.7", unit: "ms p95" },
+      },
+      {
+        point:
+          "Cascade result, reported at its real operating point. Stages 1+2 together reach 30.5% detection at a 1.54% false-positive rate — after a single content-free reference vector was found to be causing 72% of false positives and filtered out.",
+        metric: { label: "False positives", value: "1.54", unit: "%" },
+      },
+    ],
+    whatBroke: [
+      "The similarity stage's first cut had an 11.2% false-positive rate — traced to a single empty \"Hello\" reference vector responsible for 72% of the false positives. A minimum-length filter on the reference index cut false positives by 78%.",
+      "GCG-style adversarial-suffix attacks were predicted to be catchable by an entropy rule. They were not — the rule fired on 0% of them at the balanced threshold. This was reported as a falsified hypothesis rather than tuned away, because tuning against the test set would have been fitting to it.",
+      "The Stage 3 classifier was measured and then not shipped. It had real standalone capability, but on the specific slice of traffic it would actually see — the ambiguous band the earlier stages route to it — it beat nothing while running at 4x the false-positive rate. Measured, documented, left out.",
+      "One class of persuasive paraphrase attacks was found to score below any usable similarity threshold — meaning the similarity stage structurally cannot route them to a classifier. This was written up as a routing limitation and future work, not hidden.",
+    ],
+    results: [
+      { label: "Test set", value: "5,860 prompts, 5% attack prevalence" },
+      { label: "Stage 1 latency (p95)", value: "0.29 ms" },
+      { label: "Proxy overhead (p95)", value: "2.7 ms" },
+      { label: "Cascade detection", value: "30.5% recall" },
+      { label: "False-positive rate", value: "1.54%" },
+      { label: "Documented negative results", value: "4" },
     ],
   },
 ];
