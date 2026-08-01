@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="flex flex-wrap justify-center gap-3">
         {email ? (
           <a href={email.href} className="pill label">
-            {email.href.replace("mailto:", "")}
+            Contact Me
           </a>
         ) : null}
         <a href={profile.footerRepo} className="pill label">
