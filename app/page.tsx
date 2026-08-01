@@ -53,18 +53,13 @@ export default function Home() {
           </ul>
         </div>
 
-        <p className="label mt-3 text-muted">
-          {profile.codingProfiles.map((link, i) => (
-            <span key={link.label}>
-              {i > 0 ? " · " : null}
-              <a href={link.href} className="group">
-                <span className="text-muted group-hover:text-accept">
-                  {link.label}
-                </span>
-              </a>
-            </span>
+        <div className="mt-3 flex flex-wrap gap-3">
+          {profile.codingProfiles.map((link) => (
+            <a key={link.label} href={link.href} className="pill label">
+              {link.label}
+            </a>
           ))}
-        </p>
+        </div>
       </Section>
     </div>
   );
