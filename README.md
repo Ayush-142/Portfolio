@@ -1,9 +1,9 @@
 # Portfolio
 
-Ayush's personal portfolio. Next.js (App Router) + TypeScript + Tailwind CSS, built as a fully
+My personal portfolio. Built with Next.js (App Router) + TypeScript + Tailwind CSS, as a fully
 static export — no API routes, no server runtime.
 
-All copy and project data lives in `content/profile.ts` and `content/projects.ts`; components
+I keep all copy and project data in `content/profile.ts` and `content/projects.ts`; components
 render from that data rather than hardcoding text.
 
 ## Local development
