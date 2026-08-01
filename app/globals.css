@@ -1,18 +1,6 @@
 @import "tailwindcss";
 
-:root,
-[data-theme="light"] {
-  --paper: #edeef0;
-  --surface: #ffffff;
-  --ink: #14181d;
-  --muted: #5a636e;
-  --rule: #d3d7dc;
-  --accept: #1b7a4b;
-  --fail: #a03a2e;
-  color-scheme: light;
-}
-
-[data-theme="dark"] {
+:root {
   --paper: #101317;
   --surface: #171b21;
   --ink: #e7e9ec;
@@ -89,6 +77,25 @@ a:hover {
   text-decoration-color: currentColor;
 }
 
+.pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  padding: 0.4rem 0.8rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition:
+    border-color 120ms ease,
+    color 120ms ease;
+}
+
+.pill:hover {
+  border-color: var(--accept);
+  color: var(--ink);
+}
+
 :focus-visible {
   outline: 2px solid var(--accept);
   outline-offset: 2px;
@@ -96,6 +103,10 @@ a:hover {
 
 @media (prefers-reduced-motion: reduce) {
   a {
+    transition: none;
+  }
+
+  .pill {
     transition: none;
   }
 }

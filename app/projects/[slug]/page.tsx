@@ -89,16 +89,18 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </Section>
 
       <Section label="Results">
-        <table className="w-full text-sm">
-          <tbody>
-            {project.results.map((row) => (
-              <tr key={row.label} className="border-t border-rule">
-                <td className="py-2 pr-4 text-muted">{row.label}</td>
-                <td className="data py-2 text-ink">{row.value}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="rounded-[10px] border border-rule bg-surface px-4">
+          <table className="w-full text-sm">
+            <tbody>
+              {project.results.map((row) => (
+                <tr key={row.label} className="border-t border-rule first:border-t-0">
+                  <td className="py-2 pr-4 text-muted">{row.label}</td>
+                  <td className="data py-2 text-ink">{row.value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </Section>
     </div>
   );

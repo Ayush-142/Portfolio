@@ -37,19 +37,21 @@ export default function Home() {
       <Section label="Competitive Programming">
         <p>{profile.competitiveProgramming.standing}</p>
 
-        <ul className="data mt-3 divide-y divide-rule">
-          {profile.competitiveProgramming.results.map((result) => (
-            <li key={result.event}>
-              <a
-                href={result.proofUrl}
-                className="flex flex-col gap-0.5 py-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4"
-              >
-                <span className="text-ink">{result.event}</span>
-                <span className="text-muted sm:text-right">{result.result}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="mt-3 rounded-[10px] border border-rule bg-surface px-4 py-2">
+          <ul className="data divide-y divide-rule">
+            {profile.competitiveProgramming.results.map((result) => (
+              <li key={result.event}>
+                <a
+                  href={result.proofUrl}
+                  className="flex flex-col gap-0.5 py-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4"
+                >
+                  <span className="text-ink">{result.event}</span>
+                  <span className="text-muted sm:text-right">{result.result}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
 
         <p className="label mt-3 text-muted">
           {profile.codingProfiles.map((link, i) => (
