@@ -5,6 +5,29 @@ import Footer from "@/components/Footer";
 import { profile } from "@/content/profile";
 import "./globals.css";
 
+const themeInitScript = `
+(function () {
+  try {
+    var stored = localStorage.getItem("theme");
+    var theme =
+      stored === "light" || stored === "dark"
+        ? stored
+        : window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+    document.documentElement.setAttribute("data-theme", theme);
+    var meta = document.getElementById("theme-color-meta");
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.id = "theme-color-meta";
+      meta.setAttribute("name", "theme-color");
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute("content", theme === "dark" ? "#101317" : "#edeef0");
+  } catch (e) {}
+})();
+`;
+
 const spectral = Spectral({
   variable: "--font-spectral",
   subsets: ["latin"],
@@ -36,8 +59,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${spectral.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} h-full antialiased`}
     >
+      <head>
+        <script id="theme-init" dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="min-h-full flex flex-col">
         <header className="mx-auto w-full max-w-180 px-6 pt-8">
           <Nav />

@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-:root {
+:root,
+[data-theme="light"] {
   --paper: #edeef0;
   --surface: #ffffff;
   --ink: #14181d;
@@ -8,6 +9,18 @@
   --rule: #d3d7dc;
   --accept: #1b7a4b;
   --fail: #a03a2e;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --paper: #101317;
+  --surface: #171b21;
+  --ink: #e7e9ec;
+  --muted: #9099a3;
+  --rule: #2a2f37;
+  --accept: #46c88a;
+  --fail: #e0685a;
+  color-scheme: dark;
 }
 
 @theme inline {
