@@ -53,7 +53,7 @@ export default function Home() {
           </ul>
         </div>
 
-        <div className="mt-3 flex flex-wrap gap-3">
+        <div className="mt-3 flex flex-wrap justify-between gap-3">
           {profile.codingProfiles.map((link) => (
             <a key={link.label} href={link.href} className="pill label">
               {link.label}
