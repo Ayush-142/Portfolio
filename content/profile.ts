@@ -12,6 +12,8 @@ export type ContestResult = {
 export type Profile = {
   name: string;
   tagline: string;
+  // TODO: date-sensitive — remove or update once a role is signed.
+  availability: string;
   links: ProfileLink[];
   about: string[];
   footerRepo: string;
@@ -27,6 +29,7 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 export const profile: Profile = {
   name: "Ayush",
   tagline: "I build systems, then measure what breaks.",
+  availability: "Open to full-time SDE roles from 2027.",
   links: [
     { label: "GitHub", href: "https://github.com/Ayush-142" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/ayush-bit/" },

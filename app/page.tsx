@@ -12,6 +12,7 @@ export default function Home() {
       <div>
         <h1>Hey, I&apos;m {profile.name}.</h1>
         <p className="mt-2 text-lg text-muted">{profile.tagline}</p>
+        <p className="label mt-2 text-muted">{profile.availability}</p>
       </div>
 
       <Section label="About">
